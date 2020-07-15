@@ -11,7 +11,11 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
      * @param authService the Auth Service
      */
     constructor(private moduleRef: ModuleRef) {
-        super({ passReqToCallback: true });
+        super({
+            passReqToCallback: true,
+            userField: 'email',
+            passwordField: 'password',
+        });
     }
 
     /**
