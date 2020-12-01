@@ -17,12 +17,7 @@ export class UsersService {
                 userId: 2,
                 username: '2',
                 password: '2',
-            },
-            {
-                userId: 3,
-                username: '3',
-                password: '3',
-            },
+            }
         ];
     }
 

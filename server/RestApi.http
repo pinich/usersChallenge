@@ -1,0 +1,8 @@
+@port = 3000
+@host = http://localhost:{{port}}
+### Get User profile
+GET {{host}}/profile HTTP/1.1
+
+
+### Test API
+GET {{host}} HTTP/1.1
