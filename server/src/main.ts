@@ -6,7 +6,12 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const port = process.env.PORT || 3000;
   const app = await NestFactory.create(AppModule);
-  
+
+  /** This parameters could be loaded from .env but for the simplicity they are hardcoded here */
+  app.enableCors({
+    origin: ['https://pinich.ddns.net', 'http://localhost:8100'],
+  });
+
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   app.useGlobalPipes(new ValidationPipe());
