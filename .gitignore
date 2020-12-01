@@ -1,2 +1,3 @@
-**/persist/*
+/persist/*
+!persist/.gitkeep
 **/dist/*
