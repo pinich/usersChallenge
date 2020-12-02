@@ -14,9 +14,7 @@ import { DoesUserExist } from './guards/doesUserExist.guard';
 
 @Controller('auth')
 export class AuthController {
-    /**
-     *
-     */
+
     constructor(private authService: AuthService) { }
 
     @UseGuards(LocalAuthGuard)

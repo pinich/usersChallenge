@@ -5,6 +5,17 @@
 # @name Test_API
 GET {{host}}/api HTTP/1.1
 
+
+
+### Get all users
+# @name getAllUsers
+GET {{host}}/api/users HTTP/1.1
+
+### Get user by id
+# @name getUserByID
+GET {{host}}/api/users/2 HTTP/1.1
+
+
 ### Login sample request
 # @name login
 POST {{host}}/api/auth/login HTTP/1.1
@@ -15,10 +26,17 @@ Content-Type: {{contentType}}
     "password":"123456"
 }
 
+
+
+
 ### After getting token from login authToken can be used
+# @name protecterRouteTest
 @authToken = Bearer {{login.response.body.token}}
 GET {{host}}/api/protected HTTP/1.1
 Authorization:  {{authToken}}
+
+
+
 
 ### Register sample request
 # @name register
@@ -27,7 +45,7 @@ Content-Type: {{contentType}}
 
 {
     "name": "UserA",
-    "email": "a@a.com",
+    "email": "af@a.com",
     "password": "123456",
     "other": "Some other text"
 }

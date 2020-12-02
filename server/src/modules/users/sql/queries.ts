@@ -24,4 +24,5 @@ export const UserSqlQueries = {
     //SELECT last_insert_rowid();
     selectByEmail: `SELECT * FROM users WHERE "email" = ?;`,
     selectById: `SELECT * FROM users WHERE "id" = ?;`,
+    selectAllUsers:'SELECT id,name,email,date,other FROM users ORDER BY name ASC'
 };

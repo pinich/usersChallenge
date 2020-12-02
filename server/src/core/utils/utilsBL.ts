@@ -1,6 +1,5 @@
 import { Logger } from '@nestjs/common';
 import { UnprocessableEntityException } from '@nestjs/common/exceptions';
-// import { transformAndValidate } from 'class-transformer-validator';
 
 export class UtilsBL {
     /**
@@ -14,14 +13,4 @@ export class UtilsBL {
         return false;
     }
 
-    // public static async classValidate(classType: any, obj: any) {
-    //     try {
-    //         const res = await transformAndValidate(classType, obj);
-    //         return true;
-    //     } catch (errors) {
-    //         const msg = 'Class Validation failed with Errors: ' + errors;
-    //         Logger.error(msg, null, 'UtilsBL');
-    //         throw new UnprocessableEntityException(msg);
-    //     }
-    // }
 }

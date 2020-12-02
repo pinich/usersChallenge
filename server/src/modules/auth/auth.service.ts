@@ -19,7 +19,7 @@ export class AuthService {
     async validateUser(username: string, pass: string) {
         // Find user by email
         Logger.debug('Login validateUser', 'AuthService');
-        const user = await this.userService.findOneByEmail(username);
+        const user = await this.userService.getUserByEmail(username);
         if (!user) {
             return null;
         }
