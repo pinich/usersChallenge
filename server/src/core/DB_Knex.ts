@@ -2,6 +2,7 @@ import { Logger } from '@nestjs/common';
 import * as Knex from 'knex';
 
 const knex = Knex({
+    debug: false,
     client: 'sqlite3',
     connection: {
         filename: process.env.DB_FILE,
@@ -12,6 +13,7 @@ const knex = Knex({
 });
 Logger.log(`Create db at ${process.env.DB_FILE}`, 'DAL');
 export abstract class DAL {
+
     static getKnex() {
         return knex;
     }
