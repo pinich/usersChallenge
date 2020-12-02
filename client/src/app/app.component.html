@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/" routerLinkActive="active">Navbar</a>
+  <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
+    aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div [ngbCollapse]="!isNavbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav nav-pills mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/home">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li  *ngIf="!currentUser" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/login">Login/Register</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+      <li class="nav-pills">
+        <button *ngIf="currentUser" class="btn btn-danger" (click)="logout()"><i class="fa fa-user"></i> Logout {{currentUser.name}}</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

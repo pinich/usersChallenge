@@ -2,8 +2,12 @@
 	"folders": [
 		{
 			"path": "server"
-		},{
+		},
+		{
 			"path": "persist"
+		},
+		{
+			"path": "client"
 		}
 	],
 	"settings": {}
