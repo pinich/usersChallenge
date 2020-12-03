@@ -1,0 +1,12 @@
+<div class="card border-primary" (click)="openModal()">
+  <div class="card-header text-white bg-primary border-primary">
+    <h4>{{ user.name }}</h4>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ user.email }}</h5>
+    <p class="card-text">{{ user.other }}</p>
+    <p class="card-text">
+      <small class="text-muted">{{ user.date | date: "HH:mm dd/MM/yy" }}</small>
+    </p>
+  </div>
+</div>

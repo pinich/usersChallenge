@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" style="margin-bottom: 2vh;">
   <a class="navbar-brand" routerLink="/" routerLinkActive="active">Navbar</a>
   <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
     aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,7 +8,7 @@
   <div [ngbCollapse]="!isNavbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav nav-pills mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/home">Home
+        <a class="nav-link" routerLinkActive="active" routerLink="/home">Users
           <span class="sr-only">(current)</span>
         </a>
       </li>

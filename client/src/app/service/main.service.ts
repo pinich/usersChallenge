@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, catchError } from 'rxjs/operators';
-import { Observable, of, Subject, throwError } from 'rxjs';
+import { map, catchError, take, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.entity';
 
@@ -12,9 +12,13 @@ import { User } from '../models/user.entity';
 export class MainService {
   private readonly serverURL = environment.serverURL;
 
+  private _users = new BehaviorSubject<User[]>([]);
+
   constructor(private http: HttpClient) { }
 
-
+  get users(): Observable<User[]> {
+    return this._users.asObservable();
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: Error): Observable<T> => {
@@ -31,6 +35,7 @@ export class MainService {
 
   getUsersList(): Observable<User[]> {
     return this.http.get<User[]>(this.serverURL + '/api/users').pipe(
+      take(1),
       map(data => {
         const resultList = new Array<User>();
         data.map((userData: User) => {
@@ -44,6 +49,9 @@ export class MainService {
           ));
         });
         return resultList;
+      }),
+      tap(fetchedUsers => {
+        this._users.next(fetchedUsers);
       }),
       catchError(this.handleError('getListNames', null))
     );

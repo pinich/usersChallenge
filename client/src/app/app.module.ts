@@ -12,13 +12,17 @@ import { MainService } from './service/main.service';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { UserCardComponent } from './components/home/user-card/user-card.component';
+import { UserModalComponent } from './components/home/user-modal/user-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    UserCardComponent,
+    UserModalComponent
   ],
   imports: [
     BrowserModule,

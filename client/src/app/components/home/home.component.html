@@ -1,1 +1,8 @@
-<p>home works!</p>
+<div class="mainContainer">
+  <h1>User Cards</h1>
+  <span *ngIf="isLoading">Loading users ...</span>
+  <span *ngIf="!isLoading && users.length === 0">There are no registered users, you can add users by registering a new user on <a routerLink="/login">Login/Register page</a> and clicking on Register tab.</span>
+  <div *ngIf="!isLoading" class="row">
+    <app-user-card class="padTop col-md-4" *ngFor="let user of users" [user]="user"></app-user-card>
+  </div>
+</div>

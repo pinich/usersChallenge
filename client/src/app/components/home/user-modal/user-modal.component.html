@@ -1,0 +1,94 @@
+<div class="modal-header list-group-item-primary">
+  <h4 class="modal-title">{{ user.name }}</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss({ msg: 'close', id: user.id })"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">User ID</span>
+    </div>
+    <input
+      type="text"
+      class="form-control mr-1"
+      aria-label="Default"
+      aria-describedby="inputGroup-sizing-default"
+      [value]="user.id"
+      readonly
+    />
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Email</span>
+    </div>
+    <input
+      placeholder="User Email"
+      maxlength="100"
+      type="text"
+      class="form-control"
+      aria-label="Default"
+      aria-describedby="inputGroup-sizing-default"
+      [(ngModel)]="user.email"
+      readonly
+    />
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Name</span>
+    </div>
+    <input
+      placeholder="Name of the user"
+      maxlength="100"
+      type="text"
+      class="form-control"
+      aria-label="Default"
+      aria-describedby="inputGroup-sizing-default"
+      [(ngModel)]="user.name"
+      readonly
+    />
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Registration date</span>
+    </div>
+    <input
+      placeholder="Registration Time stamp"
+      maxlength="100"
+      type="text"
+      class="form-control"
+      aria-label="Default"
+      aria-describedby="inputGroup-sizing-default"
+      [(ngModel)]="user.date"
+      readonly
+    />
+  </div>
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">User Bio</span>
+    </div>
+    <textarea
+      rows="5"
+      class="form-control"
+      aria-label="User biography"
+      aria-describedby="inputGroup-sizing-default"
+      [(ngModel)]="user.other"
+      readonly
+    ></textarea>
+  </div>
+</div>
+<div class="modal-footer list-group-item-primary">
+  <button
+    type="button"
+    class="btn btn-danger"
+    (click)="activeModal.dismiss({ msg: 'close', id: user.id })"
+  >
+    Close
+  </button>
+</div>
