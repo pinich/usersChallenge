@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { HomeComponent } from './components/home/home.component';
 import { UserCardComponent } from './components/home/user-card/user-card.component';
 import { UserModalComponent } from './components/home/user-modal/user-modal.component';
+import { CurrentUserProfileComponent } from './components/current-user-profile/current-user-profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserModalComponent } from './components/home/user-modal/user-modal.comp
     PageNotFoundComponent,
     HomeComponent,
     UserCardComponent,
-    UserModalComponent
+    UserModalComponent,
+    CurrentUserProfileComponent
   ],
   imports: [
     BrowserModule,

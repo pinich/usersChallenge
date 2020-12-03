@@ -15,6 +15,9 @@
       <li  *ngIf="!currentUser" class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="/login">Login/Register</a>
       </li>
+      <li  *ngIf="currentUser" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" routerLink="/profile">Current User Profile</a>
+      </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-pills">

@@ -53,7 +53,7 @@ export class AuthenticationService {
   private saveCurrentUserData(result: any): void {
     // login successful if there is a jwt token in the response
     if (result && result.user && result.token) {
-      const date = result.user.date? new Date(result.user.date) : new Date();
+      const date = result.user.date ? new Date(result.user.date) : new Date();
       const userObj = new LoginUser(
         result.user.id,
         result.user.name,

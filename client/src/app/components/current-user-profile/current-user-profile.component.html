@@ -1,15 +1,6 @@
-<div class="modal-header list-group-item-primary">
-  <h4 class="modal-title">{{ user.name }}</h4>
-  <button
-    type="button"
-    class="close"
-    aria-label="Close"
-    (click)="dismissModal('close')"
-  >
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body">
+<p class="text-danger">Protected Path</p>
+<h1>Details of currently logged in user</h1>
+<div class="container">
   <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span class="input-group-text">User ID</span>
@@ -19,7 +10,7 @@
       class="form-control mr-1"
       aria-label="Default"
       aria-describedby="inputGroup-sizing-default"
-      [value]="user.id"
+      [value]="currentUser.id"
       readonly
     />
   </div>
@@ -34,7 +25,7 @@
       class="form-control"
       aria-label="Default"
       aria-describedby="inputGroup-sizing-default"
-      [(ngModel)]="user.email"
+      [value]="currentUser.email"
       readonly
     />
   </div>
@@ -49,7 +40,7 @@
       class="form-control"
       aria-label="Default"
       aria-describedby="inputGroup-sizing-default"
-      [(ngModel)]="user.name"
+      [value]="currentUser.name"
       readonly
     />
   </div>
@@ -64,31 +55,36 @@
       class="form-control"
       aria-label="Default"
       aria-describedby="inputGroup-sizing-default"
-      [(ngModel)]="user.date"
+      [value]='registrationDateStr | date: "HH:mm:ss dd/MM/yy"'
       readonly
     />
   </div>
-
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Token expiration date</span>
+    </div>
+    <input
+      placeholder="Token Expiration Time stamp"
+      maxlength="100"
+      type="text"
+      class="form-control"
+      aria-label="Default"
+      aria-describedby="inputGroup-sizing-default"
+      [value]='tokenExpDateStr | date: "HH:mm:ss dd/MM/yy"'
+      readonly
+    >
+  </div>
   <div class="input-group">
     <div class="input-group-prepend">
-      <span class="input-group-text">User Bio</span>
+      <span class="input-group-text">Token (JWT)</span>
     </div>
     <textarea
       rows="5"
       class="form-control"
       aria-label="User biography"
       aria-describedby="inputGroup-sizing-default"
-      [(ngModel)]="user.other"
+      [value]="currentUser.token"
       readonly
     ></textarea>
   </div>
-</div>
-<div class="modal-footer list-group-item-primary">
-  <button
-    type="button"
-    class="btn btn-danger"
-    (click)="dismissModal('close')"
-  >
-    Close
-  </button>
 </div>

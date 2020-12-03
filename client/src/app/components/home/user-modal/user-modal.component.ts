@@ -19,4 +19,8 @@ export class UserModalComponent implements OnInit {
     this.user = { ...this.origUser };   // Make replication
   }
 
+  dismissModal(msg: string): void {
+    this.activeModal.dismiss({ msg: msg, id: this.user.id })
+  }
+
 }

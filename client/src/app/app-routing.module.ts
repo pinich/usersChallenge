@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CurrentUserProfileComponent } from './components/current-user-profile/current-user-profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,6 +14,10 @@ const routes: Routes = [
   }, {
     path: 'home',
     component: HomeComponent
+  }, {
+    path: 'profile',
+    component: CurrentUserProfileComponent,
+    canActivate: [AuthGuard]
   }, {
     path: 'login',
     component: LoginComponent
