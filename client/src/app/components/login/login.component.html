@@ -84,7 +84,7 @@
               class="invalid-feedback"
             >
               <div *ngIf="g.password.errors.required">Password is required</div>
-              <div *ngIf="f.password.errors.minlength">
+              <div *ngIf="g.password.errors.minlength">
                 Password must be at least 6 characters
               </div>
             </div>
@@ -101,7 +101,7 @@
               *ngIf="submitted && g.rePassword.errors"
               class="invalid-feedback"
             >
-              <div *ngIf="g.rePassword.errors.notEquivalent">
+              <div *ngIf="g.rePassword.errors.confirmPasswordValidator">
                 Passwords don't match
               </div>
             </div>
@@ -115,6 +115,7 @@
               [ngClass]="{ 'is-invalid': submitted && g.name.errors }"
             />
             <div *ngIf="submitted && g.name.errors" class="invalid-feedback">
+              <div *ngIf="g.name.errors.required">Name is required</div>
               <div *ngIf="g.name.errors.maxlength">Max length reached</div>
             </div>
           </div>

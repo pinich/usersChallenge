@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from 'src/app/service/authentication.service';
+import { ConfirmPasswordValidator } from './confirm-password.validator';
 
 @Component({
   selector: 'app-login',
@@ -27,18 +28,6 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) { }
 
-  checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
-    return (group: FormGroup) => {
-      const passwordInput = group.controls[passwordKey];
-      const passwordConfirmationInput = group.controls[passwordConfirmationKey];
-      if (passwordInput.value !== passwordConfirmationInput.value) {
-        return passwordConfirmationInput.setErrors({ notEquivalent: true });
-      } else {
-        return passwordConfirmationInput.setErrors(null);
-      }
-    };
-  }
-
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
@@ -47,11 +36,13 @@ export class LoginComponent implements OnInit {
 
     this.regForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
-      password: [null, Validators.required, Validators.minLength(6)],
-      rePassword: [null, Validators.required],
-      name: ['', Validators.maxLength(300)],
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      rePassword: ['', Validators.required],
+      name: new FormControl('', [Validators.maxLength(300), Validators.required]),
       other: ['', Validators.maxLength(500)]
-    }, { validator: this.checkIfMatchingPasswords('password', 'rePassword') });
+    }, {
+      validator: ConfirmPasswordValidator('password', 'rePassword')
+    });
 
     // reset login status
     this.authenticationService.logout();
@@ -80,14 +71,17 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           this.router.navigate([this.returnUrl]);
+          this.resetForms();
         },
         error => {
           this.error = error;
-        }, () => {
-          this.loading = false;
-          this.submitted = false;
-          this.loading = false;
+          this.resetForms();
         });
+  }
+  private resetForms(): void {
+    this.loading = false;
+    this.submitted = false;
+    this.loading = false;
   }
   //#endregion
 
@@ -109,13 +103,11 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           this.router.navigate([this.returnUrl]);
+          this.resetForms();
         },
         error => {
           this.error = error;
-        }, () => {
-          this.loading = false;
-          this.submitted = false;
-          this.loading = false;
+          this.resetForms();
         });
   }
   //#endregion

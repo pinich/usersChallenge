@@ -8,8 +8,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   /** This parameters could be loaded from .env but for the simplicity they are hardcoded here */
+  // origin: ['https://pinich.ddns.net', 'http://localhost:4200'],
   app.enableCors({
-    origin: ['https://pinich.ddns.net', 'http://localhost:8100'],
+    origin: ['https://pinich.ddns.net', 'http://localhost:4200']
   });
 
   const globalPrefix = 'api';

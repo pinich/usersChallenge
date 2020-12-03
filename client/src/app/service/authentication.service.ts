@@ -25,22 +25,9 @@ export class AuthenticationService {
 
   login(email: string, password: string) {
     const serverURL = environment.serverURL + environment.authSubPath + '/login';
-    return this.http.post<any>(serverURL, { username: email, password })
+    return this.http.post<any>(serverURL, { email, password })
       .pipe(map(result => {
-        // login successful if there is a jwt token in the response
-        if (result && result.user && result.token) {
-          const userObj = new LoginUser(
-            result.user.id,
-            result.user.name,
-            result.user.email,
-            result.token,
-            result.exp,
-            new Date(result.user.date)
-          );
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(userObj));
-          this.currentUserSubject.next(userObj);
-        }
+        this.saveCurrentUserData(result);
         return result;
       }));
   }
@@ -55,20 +42,31 @@ export class AuthenticationService {
     const serverURL = environment.serverURL + environment.authSubPath + '/register';
     return this.http.post<any>(serverURL, { name, email, password, other })
       .pipe(map(resData => {
-        // Register successful if there is userID
-        if (resData && resData.user.id) {
-          this.login(email, password)
-            .subscribe(
-              data => {
-                return data;
-              },
-              error => {
-                throw error;
-              });
-        } else {
-          // Register failed
-          throw resData;
-        }
+
+
+        this.saveCurrentUserData(resData);
+
       }, catchError(err => err)));
+  }
+
+
+  private saveCurrentUserData(result: any): void {
+    // login successful if there is a jwt token in the response
+    if (result && result.user && result.token) {
+      const date = result.user.date? new Date(result.user.date) : new Date();
+      const userObj = new LoginUser(
+        result.user.id,
+        result.user.name,
+        result.user.email,
+        result.token,
+        result.exp,
+        date
+      );
+      // store user details and jwt token in local storage to keep user logged in between page refreshes
+      localStorage.setItem('currentUser', JSON.stringify(userObj));
+      this.currentUserSubject.next(userObj);
+    } else {
+      throw result;
+    }
   }
 }
