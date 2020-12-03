@@ -13,6 +13,7 @@ export class AuthenticationService {
 
   private currentUserSubject: BehaviorSubject<LoginUser>;
   public currentUser: Observable<LoginUser>;
+  private activeLogoutTimer: any;
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<LoginUser>(JSON.parse(localStorage.getItem('currentUser')));
@@ -49,6 +50,16 @@ export class AuthenticationService {
       }, catchError(err => err)));
   }
 
+  private autoLogout(futureTime: number) {
+    const duration = futureTime - ((new Date()).getTime() / 1000);
+    if (this.activeLogoutTimer) {
+      clearTimeout(this.activeLogoutTimer);
+    }
+    this.activeLogoutTimer = setTimeout(() => {
+      this.logout();
+    }, duration * 1000);
+  }
+
 
   private saveCurrentUserData(result: any): void {
     // login successful if there is a jwt token in the response
@@ -64,6 +75,7 @@ export class AuthenticationService {
       );
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify(userObj));
+      this.autoLogout(userObj.tokenExpDate);
       this.currentUserSubject.next(userObj);
     } else {
       throw result;
