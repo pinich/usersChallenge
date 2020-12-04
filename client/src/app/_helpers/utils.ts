@@ -4,7 +4,7 @@ export class Utils {
    * Format: yyyy-MM-ddTHH:mm
    * @param dateString data as timestamp string
    */
-  public static timeStampToDateInput(dateString: string): string {
+  public static timeStampToDateInput(dateString: string | Date): string {
     return dateString.toString().slice(0, 19).toString().replace(' ', 'T');
   }
 }

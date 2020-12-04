@@ -12,15 +12,19 @@ export class CurrentUserProfileComponent implements OnInit {
   currentUser: LoginUser;
   tokenExpDateStr: string;
   registrationDateStr: string;
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.currentUser = this.authenticationService.currentUserValue;
     this.registrationDateStr = Utils.timeStampToDateInput(
-      this.currentUser.date + ''
+      this.dateStringFixOffsetAndReturnISO(this.currentUser.date)
     );
     this.tokenExpDateStr = Utils.timeStampToDateInput(
-      new Date(this.currentUser.tokenExpDate * 1000).toISOString()
+      this.dateStringFixOffsetAndReturnISO(new Date(this.currentUser.tokenExpDate * 1000))
     );
+  }
+
+  private dateStringFixOffsetAndReturnISO(date: Date): string {
+    return new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
   }
 }
