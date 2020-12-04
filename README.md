@@ -24,25 +24,25 @@ To run locally use the following command after entering project's directory.
 
 - The Database I chose for this project is `sqlite3` because it's very portable and doesn't require running separate database process. I'm using `knex` to run sql queries with promise wrapper and it's very simple to configure knex to work with other DB's (MySql, PGSql,MSSql...) without requiring major code refactoring.
 - User passwords are encrypted when storing in DB.
-- I user `.env` (dotenv) package to supplies external process variable (Port, DB file location, token expiration time, JWT secret). This allows easy expansion of the app later on.
+- I use `.env` (dotenv) package to supplies external process variable (Port, DB file location, token expiration time, JWT secret). This allows easy expansion of the app later on.
 
 
 ## Frontend (Client side)
 - FrontEnd is written with latest angular CLI version.
-- I have chose to use bootstrap 4 and ng-bootstrap.
+- I chose to use bootstrap 4 and ng-bootstrap.
 - The Users are displayed on `/home` route.
-- When user is loggedIn he will be able to logout by clicking on the red top right coroner button.
+- When user is logged-in he will be able to logout by clicking on the red top right corner button.
 - Navigation to `/profile` rote is protected and requires the user to be logged in.
 - User will be automatically logged out and redirected to login/register page when the JWT expires.
 - JWT is stored in localStorage with minimum user credentials.
-- When clicking on user card a simple modal is displayed and shows the selected user details except the password which is not transferred when requesting users from the server.
+- When clicking on user card a simple modal is displayed and shows the selected user details without the password for obivious reasons.
 
 ## Troubleshooting
 
 > Build issues
 
-If there are installation errors encountered during sqlite3 installation building sqlite3 from source should fix them:
+If there are installation errors encountered during **sqlite3** installation building sqlite3 from source should fix them:
 `npm install --build-from-source`
 
 >Running scripts issues
-On win10 there might be issues running the script because windows doesn't support always running bash script natively but if `git bash` installed it should work fine. The alternative is to build & run everything manually.
+On win10 there might be issues running the script because windows doesn't support running bash/shell scripts natively but if `git bash` installed it should work fine. The alternative is to build & run everything manually.
