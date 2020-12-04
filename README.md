@@ -6,10 +6,11 @@
 - My local environments are Linux/MacOsX but it should run on WIN10 environment as well.
 
 ## Installing and running locally
-To run locally use the following command after entering project's directory.
+To run locally on port **3000** (http://localhost:3000) use the following command after entering project's directory.
 ```bash
 ./install_build.sh build && ./run.sh
 ```
+- The port can be changed in .env file
 > I have created 2 simple scripts on the main directory `install_build.sh` & `run.sh`
 ### install_build.sh
 >This script can be run with the following arguments:
