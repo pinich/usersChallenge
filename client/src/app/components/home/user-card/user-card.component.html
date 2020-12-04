@@ -6,7 +6,7 @@
     <h5 class="card-title">{{ user.email }}</h5>
     <p class="card-text">{{ user.other }}</p>
     <p class="card-text">
-      <small class="text-muted">{{ user.date | date: "HH:mm dd/MM/yy" }}</small>
+      <small class="text-muted">{{ formatDate(user.date) | date: "HH:mm dd/MM/yy" }}</small>
     </p>
   </div>
 </div>

@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { LoginUser } from '../models/loginUser.entity';
+import { Utils } from '../_helpers/utils';
 
 @Injectable({
   providedIn: 'root'
@@ -64,7 +65,7 @@ export class AuthenticationService {
   private saveCurrentUserData(result: any): void {
     // login successful if there is a jwt token in the response
     if (result && result.user && result.token) {
-      const date = result.user.date ? new Date(result.user.date) : new Date();
+      const date = result.user.date ? new Date(Utils.timeStampToDateInput(result.user.date)) : new Date();
       const userObj = new LoginUser(
         result.user.id,
         result.user.name,

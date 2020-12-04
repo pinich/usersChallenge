@@ -2,19 +2,18 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../../../models/user.entity';
 import { UserModalComponent } from '../user-modal/user-modal.component';
-
+import { Utils } from '../../../_helpers/utils';
 @Component({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
   styleUrls: ['./user-card.component.css']
 })
 export class UserCardComponent implements OnInit {
-
+  readonly formatDate = Utils.timeStampToDateInput;
   @Input() user: User;
   constructor(private modalService: NgbModal) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
